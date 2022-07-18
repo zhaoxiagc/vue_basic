@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let data = {
+            name:'尚硅谷',
+            address:'北京'
+        }
+        console.log(data);
+
+        //错误的转换方式（给数据加上getter和setter）
+        /* Object.defineProperty(data,'name',{
+            get(){
+                return data.name
+            },
+            set(val){
+                data.name = val
+            }
+        }) */
+
+        //创建一个监视的实例对象，用于监视data中属性的变化
+        const obs = new Observer(data)  //调用构造函数用new关键字
+        console.log(obs);
+
+        //准备一个vm实例对象
+        let vm = {}
+        vm._data = data = obs
+
+        function Observer(obj){   //创建一个名为Observer的构造函数
+            //汇总对象中所有的属性形成一个数组
+            const keys = Object.keys(obj)
+            //遍历
+            keys.forEach((k)=>{
+                Object.defineProperty(this,k,{
+                    get(){
+                        return obj[k]
+                    },
+                    set(val){
+                        obj[k] = val
+                    }
+                })
+            })
+
+        }
+
+    </script>
+</body>
+</html>

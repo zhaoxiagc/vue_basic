@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--1. 引入 vue （下载的开发版本的Vue）-->
+    <script src="../js/vue.js"></script>
+    <!--2. 下载 vue 的开发工具-->
+</head>
+<body>
+    <!--
+        一、模块：
+        1.理解：向外提供特定的js程序，一般就是一个js文件
+        2.为什么：js文件很多很复杂
+        3.作用：复用js，简化js的编写，提高js的运行效率
+
+
+        二、组件：
+        1.理解：用来实现局部功能效果的代码合集(html/css/js/image……)
+        2.为什么？一个界面的功能很复杂
+        3.作用：复用编码，简化项目编码，提高运行效率
+
+        
+        三、组件分为：
+            非单文件组件：一个文件中包含有n个组件
+
+            单文件组件：一个文件中只包含有1个组件
+                条理清晰、方便维护
+    -->
+
+    <div id="root">
+        <h2>欢迎来到{{name}}学习</h2>
+    </div>
+</body>
+
+<script>
+    //3. 关闭了Vue特别烦人的提示
+    Vue.config.productionTip = false;    //设置为 false 以阻止 vue 在启动时生成生产提示
+    new Vue({
+        el:'#root',
+        data:{
+            name:'尚硅谷',
+        }
+    })
+</script>
+</html>

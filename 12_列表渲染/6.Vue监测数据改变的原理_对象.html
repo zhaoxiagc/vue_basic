@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue监测数据的原理</title>
+    <!--1. 引入 vue （下载的开发版本的Vue）-->
+    <script src="../js/vue.js"></script>
+    <!--2. 下载 vue 的开发工具-->
+</head>
+<body>
+    <!--
+       1.加工传入的data(即将传入的data经过一些get和set处理，变成_data)
+       2.然后将_data中的数据传递给vm，实现了数据代理
+       所以数据的流程是：data →加工→ vm._data →传递→ vm.data
+    -->
+
+    <div id="root">
+        <h2>学校名称：{{name}}</h2>
+        <h2>学校地址：{{address}}</h2>
+        
+    </div>
+</body>
+
+<script>
+    //3. 关闭了Vue特别烦人的提示
+    Vue.config.productionTip = false;    //设置为 false 以阻止 vue 在启动时生成生产提示
+    
+
+    const vm = new Vue({
+        el:'#root',
+        data:{
+           name:'尚硅谷',
+           address:'北京',
+            student:{
+                name:'tom',
+                age:{
+                    rAge:40,
+                    sAge:29,
+                }
+            },
+            friends:{
+                name:'jerry',
+                age:35
+            }
+        }
+    })
+</script>
+</html>

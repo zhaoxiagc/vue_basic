@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回顾Object.defineproperty</title>
+</head>
+<body>
+    <script>
+        let number = 20
+        let person = {
+            name:'张三',
+            sex:'男'
+        }
+
+        Object.defineProperty(person, 'age', {
+            /*
+            value:18,
+            //注意。直接用 Object.defineProperty 添加的属性不能被枚举/遍历
+            //加上 enumerable:true 就可以参与枚举了
+            enumerable:true,     //控制属性是否可以枚举，默认值是false
+            writable:true,      //控制属性是否可以被修改，默认值是false
+            configurable:true,   //控制属性是否可以被删除，默认值是false
+            */
+
+            //当有人读取person的age属性时，get函数（Getter）就会被调用，且返回值就是age的值
+            get(){
+                console.log('有人读取age属性了');
+                return number
+            },
+
+            //当有人修改person的age属性时，set函数（Setter）就会被调用，且会收到修改的具体值
+            set(value){
+                console.log('有人修改age属性且值是',value);
+                number = value;
+            }
+        })
+        console.log(person);
+        console.log(Object.keys(person));
+
+        for(let index in person){
+            console.log(person[index])
+        }
+    </script>
+</body>
+</html>

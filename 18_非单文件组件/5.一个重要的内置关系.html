@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--1. 引入 vue （下载的开发版本的Vue）-->
+    <script src="../js/vue.js"></script>
+    <!--2. 下载 vue 的开发工具-->
+</head>
+<body>
+    <!--
+        1.一个重要的内置对象：VueComponent.prototype.__proto__ === Vue.prototype
+        2.为什么要有这个关系：让组件实例对象（vc）可以访问到Vue原型上的属性、方法
+    
+    注意：显式原型属性prototype只有函数有，隐式原型属性__proto__是实例对象有
+    
+    -->
+
+    <div id="root">
+        <school></school>
+    </div>
+</body>
+
+<script>
+    //3. 关闭了Vue特别烦人的提示
+    Vue.config.productionTip = false;    //设置为 false 以阻止 vue 在启动时生成生产提示
+    Vue.prototype.x = 99
+
+    //定义一个构造函数
+    /* function Demo(){
+        this.a = 1
+        this.b = 2
+    }
+
+    //创建一个Demo的实例对象
+    const d = new Demo()
+
+    console.log(Demo.prototype)    //显式原型属性
+
+    console.log(d.__proto__)      //隐式原型属性
+
+    console.log(Demo.prototype === d.__proto__)
+
+    //程序员通过显式原型属性操作原型对象，追加一个X属性，值为99
+    Demo.prototype.x = 99
+
+    console.log(d) */
+
+    //定义school组件，school是VueComponent()构造函数
+    const school = Vue.extend({
+        template:`
+        <div>
+            <h2>学校名称：{{name}}</h2>
+            <h2>学校地址：{{address}}</h2>
+            <button @click="output">点我输出x</button>
+        </div>`,
+        data(){
+            return {
+                name:'尚硅谷',
+                address:'北京'
+            }
+        },
+        methods: {
+            output(){
+                alert(this.x)
+            }
+        },
+    })
+    
+    console.log(school.prototype.__proto__ === Vue.prototype)
+    
+    //创建一个vm，其实vm是Vue()构造函数的一个实例对象
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            msg:'你好'
+        },
+        components:{
+            school
+        }
+    })
+</script>
+</html>

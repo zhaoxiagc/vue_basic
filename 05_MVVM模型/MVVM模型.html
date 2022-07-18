@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--1. 引入 vue （下载的开发版本的Vue）-->
+    <script src="../js/vue.js"></script>
+    <!--2. 下载 vue 的开发工具-->
+</head>
+<body>
+    <!--
+        MVVM模型：
+            1.M:模型Model：对应data中的数据
+            2.V:视图View：模板代码
+            3.VM:视图模型ViewModel：Vue实例对象
+        观察发现：
+            1.data中所有的属性，最后都出现在了vm身上
+            2.vm身上所有的属性 及 vue 原型上所有的属性，在vue模板中都可以直接使用
+    -->
+    
+    <!--View-->
+    <div id="root">
+       <h1>学校名称：{{name}}</h1>
+       <h1>学校地址：{{address}}</h1>
+       <h1>测试一下1：{{1+1}}</h1>
+       <h1>测试一下2：{{$options}}</h1>
+       <h1>测试一下3：{{$emit}}</h1>
+       <h1>测试一下4：{{_c}}</h1>
+    </div>
+</body>
+
+<script>
+    //3. 关闭了Vue特别烦人的提示
+    Vue.config.productionTip = false;    //设置为 false 以阻止 vue 在启动时生成生产提示
+
+    //ViewModel
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            //Model
+            name:'尚硅谷',
+            address:'北京'
+        }
+    })
+    console.log(vm);
+</script>
+</html>

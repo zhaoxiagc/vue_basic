@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--1. 引入 vue （下载的开发版本的Vue）-->
+    <script src="../js/vue.js"></script>
+
+
+    <!--2. 下载 vue 的开发工具-->
+    
+</head>
+<body>
+    <div id="root">
+        <h1>Hello，{{name}}，{{address}}</h1>
+    </div>
+
+    <div id="root2">
+        <h1>Hello，{{name.toUpperCase()}}，{{address}}</h1>
+    </div>
+   
+
+    <script>
+        //3. 关闭了Vue特别烦人的提示
+        Vue.config.productionTip = false;    //设置为 false 以阻止 vue 在启动时生成生产提示
+    
+        //创建Vue实例
+        new Vue({
+            el:'#root',       //el用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串，也可以为el:document.getElementById('root')
+            data:{            //data中用于存储数据，数据供el所指定的容器去使用，值我们暂时先写成一个对象
+                name:'尚硅谷',
+                address:'上海'
+            }
+        })
+        new Vue({
+            el:'#root2',       //el用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串，也可以为el:document.getElementById('root')
+            data:{            //data中用于存储数据，数据供el所指定的容器去使用，值我们暂时先写成一个对象
+                name:'atguigu',
+                address:'北京昌平'
+            }
+        })
+
+        /*
+        初识Vue：
+            1.想让Vue工作，就必须创建一个实例，且要传入一个配置对象
+            2.root容器里的代码依然符合html规范，只不过混入了一些特殊的Vue语法
+            3.root容器里的代码被称为【Vue模板】
+
+            注意：
+            4.容器和Vue实例是一一对应的
+            5.真实开发中只有一个Vue实例，并且会配合着组件一块使用
+            6.{{}}可以写什么，{{xxx}}中的xxx要写js表达式，且xxx可以自动读取到data中的所有属性
+                注意区分JS表达式和JS语句（代码）：
+                    1.表达式：一个表达式会生成一个值，可以放在任何一个需要值的地方
+                        （1）a
+                        （2）a+b
+                        （3）demo()
+                        （4）x==y ? 'a':'b'
+                    2.js代码（语句）
+                        （1）if(){}
+                        （2）for(){}
+                    JS表达式是特殊的JS语句
+            7.一旦data中的数据发生改变，那么页面中用到该数据的地方也会自动更新
+        */
+    </script>
+</body>
+</html>
